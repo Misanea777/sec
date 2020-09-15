@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<root>
+  <item_6>
+    <type>PASSWORD_POLICY</type>
+    <description>"1.1.4 Ensure 'Minimum password length' is set to '14 or more character(s)'"</description>
+    <info>"This policy setting determines the least number of characters that make up a password for a user account. There are many different theories about how to determine the best password length for an organization, but perhaps 'pass phrase' is a better term than 'password.' In Microsoft Windows 2000 and newer, pass phrases can be quite long and can include spaces. Therefore, a phrase such as 'I want to drink a $5 milkshake' is a valid pass phrase; it is a considerably stronger password than an 8 or 10 character string of random numbers and letters, and yet is easier to remember. Users must be educated about the proper selection and maintenance of passwords, especially with regard to password length.The recommended state for this setting is: 14 or more character(s).Rationale:Types of password attacks include dictionary attacks (which attempt to use common words and phrases) and brute force attacks (which try every possible combination of characters). Also, attackers sometimes try to obtain the account database so they can use tools to discover the accounts and passwords."</info>
+    <solution>"To establish the recommended configuration via GP, set the following UI path to 14 or more character(s):Computer Configuration\Policies\Windows Settings\Security Settings\Account Policies\Password Policy\Minimum password lengthImpact:Requirements for extremely long passwords can actually decrease the security of an organization, because users might leave the information in an insecure location or lose it. If very long passwords are required, mistyped passwords could cause account lockouts and increase the volume of help desk calls. If your organization has issues with forgotten passwords due to password length requirements, consider teaching your users about pass phrases, which are often easier to remember and, due to the larger number of character combinations, much harder to discover.Note: Older versions of Windows such as Windows 98 and Windows NT 4.0 do not support passwords that are longer than 14 characters. Computers that run these older operating systems are unable to authenticate with computers or domains that use accounts that require long passwords.Default Value:7 characters on domain members. 0 characters on stand-alone workstations."</solution>
+    <reference>"800-171|3.5.7,800-53|IA-5(1),CCE|CCE-33789-9,CIP|007-6-R5,CN-L3|7.1.2.7(e),CN-L3|7.1.3.1(b),CSCv6|16.2,CSCv6|16.5,CSCv6|5.7,CSCv7|16.10,CSF|PR.AC-1,HIPAA|164.308(a)(5)(ii)(D),ISO/IEC-27001|A.9.4.3,ITSG-33|IA-5(1),LEVEL|1S,NESA|T5.2.3,NIAv2|AM19a,NIAv2|AM19b,NIAv2|AM19c,NIAv2|AM19d,NIAv2|AM22a,PCI-DSSv3.1|8.2.3,PCI-DSSv3.2|8.2.3,SWIFT-CSCv1|4.1,TBA-FIISB|26.2.1,TBA-FIISB|26.2.4"</reference>
+    <see_also>"https://workbench.cisecurity.org/files/2550"</see_also>
+    <value_type>POLICY_DWORD</value_type>
+    <value_data>[14..MAX]</value_data>
+    <password_policy>MINIMUM_PASSWORD_LENGTH</password_policy>
+  </item_6>
+  <item_23>
+    <type>USER_RIGHTS_POLICY</type>
+    <description>"2.2.12 Ensure 'Create global objects' is set to 'Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE'"</description>
+    <info>"This policy setting determines whether users can create global objects that are available to all sessions. Users can still create objects that are specific to their own session if they do not have this user right.Users who can create global objects could affect processes that run under other users' sessions. This capability could lead to a variety of problems, such as application failure or data corruption.The recommended state for this setting is: Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE.Rationale:Users who can create global objects could affect Windows services and processes that run under other user or system accounts. This capability could lead to a variety of problems, such as application failure, data corruption and elevation of privilege."</info>
+    <solution>"To establish the recommended configuration via GP, set the following UI path to Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE:Computer Configuration\Policies\Windows Settings\Security Settings\Local Policies\User Rights Assignment\Create global objectsImpact:None - this is the default behavior.Default Value:Administrators, LOCAL SERVICE, NETWORK SERVICE, SERVICE."</solution>
+    <reference>"800-53|AC-6(7),CCE|CCE-33095-1,CSCv6|5.1,CSF|PR.AC-4,ISO/IEC-27001|A.9.2.5,LEVEL|1S,NESA|M1.1.3,NESA|T5.1.1"</reference>
+    <see_also>"https://workbench.cisecurity.org/files/2550"</see_also>
+    <value_type>USER_RIGHT</value_type>
+    <value_data>"Administrators" &amp;&amp; "LOCAL SERVICE" &amp;&amp; "NETWORK SERVICE" &amp;&amp; "SERVICE"</value_data>
+    <right_type>SeCreateGlobalPrivilege</right_type>
+  </item_23>
+  <item_26>
+    <type>USER_RIGHTS_POLICY</type>
+    <description>"2.2.15 Ensure 'Debug programs' is set to 'Administrators'"</description>
+    <info>"This policy setting determines which user accounts will have the right to attach a debugger to any process or to the kernel, which provides complete access to sensitive and critical operating system components. Developers who are debugging their own applications do not need to be assigned this user right; however, developers who are debugging new system components will need it.The recommended state for this setting is: Administrators.Note: This user right is considered a 'sensitive privilege' for the purposes of auditing.Rationale:The Debug programs user right can be exploited to capture sensitive computer information from system memory, or to access and modify kernel or application structures. Some attack tools exploit this user right to extract hashed passwords and other private security information, or to insert rootkit code. By default, the Debug programs user right is assigned only to administrators, which helps to mitigate the risk from this vulnerability."</info>
+    <solution>"To establish the recommended configuration via GP, set the following UI path to Administrators:Computer Configuration\Policies\Windows Settings\Security Settings\Local Policies\User Rights Assignment\Debug programsImpact:If you revoke this user right, no one will be able to debug programs. However, typical circumstances rarely require this capability on production computers. If a problem arises that requires an application to be debugged on a production server, you can move the server to a different OU temporarily and assign the Debug programs user right to a separate Group Policy for that OU.The service account that is used for the cluster service needs the Debug programs user right; if it does not have it, Windows Clustering will fail.Tools that are used to manage processes will be unable to affect processes that are not owned by the person who runs the tools. For example, the Windows Server 2003 Resource Kit tool Kill.exe requires this user right for administrators to terminate processes that they did not start.Default Value:Administrators."</solution>
+    <reference>"800-53|AC-6(7),CCE|CCE-33157-9,CSCv6|5.1,CSF|PR.AC-4,ISO/IEC-27001|A.9.2.5,LEVEL|1S,NESA|M1.1.3,NESA|T5.1.1"</reference>
+    <see_also>"https://workbench.cisecurity.org/files/2550"</see_also>
+    <value_type>USER_RIGHT</value_type>
+    <value_data>"Administrators"</value_data>
+    <right_type>SeDebugPrivilege</right_type>
+  </item_26>
+  <item_32>
+    <type>USER_RIGHTS_POLICY</type>
+    <description>"2.2.21 Ensure 'Enable computer and user accounts to be trusted for delegation' is set to 'No One'"</description>
+    <info>"This policy setting allows users to change the Trusted for Delegation setting on a computer object in Active Directory. Abuse of this privilege could allow unauthorized users to impersonate other users on the network.The recommended state for this setting is: No One.Note: This user right is considered a 'sensitive privilege' for the purposes of auditing.Rationale:Misuse of the Enable computer and user accounts to be trusted for delegation user right could allow unauthorized users to impersonate other users on the network. An attacker could exploit this privilege to gain access to network resources and make it difficult to determine what has happened after a security incident."</info>
+    <solution>"To establish the recommended configuration via GP, set the following UI path to No One:Computer Configuration\Policies\Windows Settings\Security Settings\Local Policies\User Rights Assignment\Enable computer and user accounts to be trusted for delegationImpact:None - this is the default behavior.Default Value:No one."</solution>
+    <reference>"800-53|AC-6(7),CCE|CCE-33778-2,CSCv6|5.1,CSF|PR.AC-4,ISO/IEC-27001|A.9.2.5,LEVEL|1S,NESA|M1.1.3,NESA|T5.1.1"</reference>
+    <see_also>"https://workbench.cisecurity.org/files/2550"</see_also>
+    <value_type>USER_RIGHT      value_data  : ""</value_type>
+    <right_type>SeEnableDelegationPrivilege</right_type>
+  </item_32>
+</root>

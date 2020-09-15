@@ -1,0 +1,10 @@
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\bin\Debug\Sesiuriti.exe.config
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\bin\Debug\Sesiuriti.exe
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\bin\Debug\Sesiuriti.pdb
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\obj\Debug\Sesiuriti.csprojAssemblyReference.cache
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\obj\Debug\Sesiuriti.Form1.resources
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\obj\Debug\Sesiuriti.Properties.Resources.resources
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\obj\Debug\Sesiuriti.csproj.GenerateResource.cache
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\obj\Debug\Sesiuriti.csproj.CoreCompileInputs.cache
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\obj\Debug\Sesiuriti.exe
+C:\Users\misanea\source\repos\Sesiuriti\Sesiuriti\obj\Debug\Sesiuriti.pdb
